@@ -14,3 +14,7 @@
 ```
 g++ -Ofast -funroll-loops --param max-completely-peeled-insns=10000 --param max-completely-peel-times=10000
 ```
+## Show optimizations and missed optimizations
+```
+-fopt-info-optimized -fopt-info-missed
+```
