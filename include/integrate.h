@@ -13,7 +13,7 @@
  * quadrature points.
  */
 template<int nphi, int nquad>
-double __attribute__ ((noinline)) integrate(const double u[],
+double __attribute__ ((noinline)) integrate(const double u[nphi][nphi][nphi],
                                             const double phi[nquad][nphi],
                                             const double omega[nquad])
 {
@@ -25,14 +25,14 @@ double __attribute__ ((noinline)) integrate(const double u[],
         for (int i2 = 0; i2<nphi; ++i2)
           for (int q1 = 0; q1<nphi; ++q1)
             for (int i1 = 0; i1<nphi; ++i1)
-              integral += u[i1+nphi*(i2+nphi*i3)]
+              integral += u[i1][i2][i3]
                           * phi[q1][i1] * phi[q2][i2] * phi[q3][i3]
                           * omega[q1] * omega[q2] * omega[q3];
   return integral;
 }
 
 template<int nphi, int nquad>
-double __attribute__ ((noinline)) integrate_fact(const double u[],
+double __attribute__ ((noinline)) integrate_fact(const double u[nphi][nphi][nphi],
                                                  const double phi[nquad][nphi],
                                                  const double omega[nquad])
 {
@@ -51,7 +51,7 @@ double __attribute__ ((noinline)) integrate_fact(const double u[],
           double f1 = 0.;
           for (int i1 = 0; i1<nphi; ++i1)
             {
-              f1 += u[i1+nphi*(i2+nphi*i3)] * integral[i1];
+              f1 += u[i1][i2][i3] * integral[i1];
             }
           f2 += f1 * integral[i2];
         }
