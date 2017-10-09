@@ -32,8 +32,8 @@ int main()
 	point_val.operator+=(point<k>(u, phi[1]));
 	integral.operator+=(integrate<k,k>(u, phi, omega));
 	#else
-	point_val.operator+=(point<k>(u, phi[1]));
-	integral.operator+=(integrate<k,k>(u, phi, omega));
+	point_val.operator+=(point_fact<k>(u, phi[1]));
+	integral.operator+=(integrate_fact<k,k>(u, phi, omega));
 	#endif
     }
 
