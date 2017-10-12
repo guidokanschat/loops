@@ -20,10 +20,10 @@ double __attribute__ ((noinline)) integrate(const double u[nphi][nphi][nphi],
   double integral = 0.;
 
   for (int q3 = 0; q3<nquad; ++q3)
-    for (int i3 = 0; i3<nquad; ++i3)
+    for (int i3 = 0; i3<nphi; ++i3)
       for (int q2 = 0; q2<nquad; ++q2)
         for (int i2 = 0; i2<nphi; ++i2)
-          for (int q1 = 0; q1<nphi; ++q1)
+          for (int q1 = 0; q1<nquad; ++q1)
             for (int i1 = 0; i1<nphi; ++i1)
               integral += u[i1][i2][i3]
                           * phi[q1][i1] * phi[q2][i2] * phi[q3][i3]
