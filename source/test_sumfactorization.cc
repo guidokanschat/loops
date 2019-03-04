@@ -1,7 +1,11 @@
 #include "../include/all_points.h"
 
+#include <likwid.h>
+
 int main()
 {
+  LIKWID_MARKER_INIT;
+
   const unsigned int k=10;
   const unsigned int q=11;
   double u[k][k][k];
@@ -16,8 +20,8 @@ int main()
     }
 
   double value = 0.;
-
-  for (unsigned int i=0; i<1000; ++i)
+  LIKWID_MARKER_START("foo");
+  for (unsigned int i=0; i<1; ++i)
     {
 #if FACTOR==0
       all_points<k,q>(u, phi, eval_points);
@@ -33,7 +37,8 @@ int main()
           for (unsigned int q3=0; q3<q; ++q3)
             value += eval_points[q1][q2][q3];
     }
-
+  LIKWID_MARKER_STOP("foo");
+  LIKWID_MARKER_CLOSE;
   std::cout << "Evaluate " << value << std::endl;
 }
 

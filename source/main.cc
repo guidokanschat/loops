@@ -3,7 +3,7 @@
 
 int main()
 {
-  const unsigned int k=20;
+  const unsigned int k=10;
   double u[k][k][k];
   double phi[k][k];
   double omega[k];
@@ -19,7 +19,7 @@ int main()
 
   double value = 0., integral = 0.;
 
-  for (unsigned int i=0; i<1000; ++i)
+  for (unsigned int i=0; i<1; ++i)
     {
 #ifndef FACTOR
       value += point<k>(u, phi[1]);
