@@ -4,6 +4,27 @@
 
 /**
  * Evaluate a function u given as linear combination of shape function
+ * values in all quadrature points in one dimension
+ *
+ * \param[in] u \fk$ values, coefficients for the linear combination
+ * \param[in] phi \f$k\cdot q$ values of shape functions quadrature points.
+ */
+template<int k, int q>
+void __attribute__ ((noinline)) all_points(const double u[k],
+                                           const double phi[k][q],
+                                           double return_value[q])
+{
+  for (int q1=0; q1<q; ++q1)
+    {
+      double f = 0.;
+      for (int i1 = 0; i1<k; ++i1)
+	f += u[i1] * phi[i1][q1];
+      return_value[q1] = f;
+    }
+}
+
+/**
+ * Evaluate a function u given as linear combination of shape function
  * values in all quadrature points. This is the naive way not using the
  * tensor structure at all.
  *
